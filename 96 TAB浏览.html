@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #d1 {
+            border: black 1px solid;
+            width: 300px;
+            height: 350px;
+            /*overflow: auto;*/
+        }
+
+        ul {
+            margin: 0;
+            padding: 0 0;
+        }
+
+        #li1, #li2, #li3 {
+            list-style: none;
+            float: left;
+            width: 98px;
+            height: 50px;
+            border: 1px solid black;
+            text-align: center;
+            line-height: 50px;
+        }
+        #div1 {
+            display: block;
+        }
+
+        #div2, #div3 {
+            display: none;
+        }
+    </style>
+    <script type="text/javascript">
+        function showDiv(n) {
+            hideAll();
+            var obj = document.getElementById("div" + n);
+            obj.style.display = "block";
+
+            var tab = document.getElementById("li" + n);
+            tab.style.borderBottom="1px solid red";
+        }
+
+        function hideAll() {
+            for (var i = 1; i <= 3; i++) {
+                var obj = document.getElementById("div" + i);
+                obj.style.display = "none";
+
+                var tab = document.getElementById("li" + i);
+                tab.style.borderBottom ="1px black solid";
+            }
+        }
+
+    </script>
+</head>
+<body>
+<div id="d1">
+    <div>
+        <ul>
+            <li id="li1" onmouseover="showDiv(1)">Car1</li>
+            <li id="li2" onmouseover="showDiv(2)">Car2</li>
+            <li id="li3" onmouseover="showDiv(3)">Car3</li>
+        </ul>
+    </div>
+
+    <div id="div1">
+        <img src="images/car1.jpg">
+    </div>
+    <div id="div2">
+        <img src="images/car2.jpg">
+    </div>
+    <div id="div3">
+        <img src="images/car3.jpg">
+    </div>
+</div>
+</body>
+</html>

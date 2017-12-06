@@ -1,0 +1,48 @@
+<!--
+location.href: 返回url/url赋值
+location.assign();  加载新的文档, 会产生history（可以返回）
+location.reload();  刷新
+location.replace(); 替换页面，不会产生history（不可以返回）
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        function fn() {
+            // location.href = "http://www.google.com";
+            // location.assign("http://www.github.com");
+            // location.reload();
+            // location.replace("http://www.apple.com.au");
+        }
+
+        onload = init;
+
+        function init() {
+            setTimeout("jump()", 5000);
+            setInterval("countDown()", 1000);
+        }
+
+        function jump() {
+            location.replace("http://www.google.com");
+        }
+        function countDown() {
+            var obj = document.getElementById("d1");
+            var n = obj.innerHTML;
+            obj.innerHTML = n - 1;
+        }
+    </script>
+    <style type="text/css">
+        #d1 {
+            font-size: 50px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="CLICK" onclick="fn()">
+账号注册成功，页面会在<span id="d1">5</span>秒后跳转到首页。。。
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #d2 {
+            width: 200px;
+            height: 20px;
+            border: 1px solid red;
+            display: inline-block;
+            padding: 2px;
+        }
+
+        #d3 {
+            display: inline-block;
+            background: red;
+            height: 20px;
+        }
+    </style>
+    <script type="text/javascript">
+        var interval;
+        var gt;
+        var time = 0;
+        var count = 0;
+
+        // Start game
+        function startGame() {
+            clearInterval(interval);
+            clearInterval(gt);
+            interval = setInterval("star()", 400);
+            gt = setInterval("gameTime()", 1000);
+        }
+
+        // Pause game
+        function pauseGame() {
+            // clearInterval()会出现BIG；可以cheat
+            // clearInterval(interval);
+            alert("Game Paused");
+        }
+
+        function star() {
+            var obj = document.createElement("img");
+
+            obj.src = "images/star.png";
+
+            obj.width = Math.random() * (100 - 20) + 20;
+
+            var w = screen.availWidth - 100;
+            var h = screen.availHeight - 100;
+            var x = Math.random() * (w - 100) + 100;
+            var y = Math.random() * (h - 200) + 100;
+            obj.style.position = "absolute";
+            obj.style.top = y + "px";
+            obj.style.left = x + "px";
+
+            document.body.appendChild(obj);
+
+            // star数量增加
+            count++;
+
+            // 进度条增长
+            var sp = document.getElementById("d3");
+            sp.style.width = count / 20 * 100 + "%";
+
+            // Game over
+            if (count > 20) {
+                alert("Game Over");
+                clearInterval(interval);
+                location.reload();
+            }
+
+            // 绑定事件
+            obj.onclick = removeStar;
+        }
+
+        function removeStar() {
+            // 绑定事件中this可以直接使用
+            this.parentNode.removeChild(this);
+            count--;
+
+            // 进度条减少
+            var sp = document.getElementById("d3");
+            sp.style.width = count / 20 * 100 + "%";
+        }
+
+        // Game time
+        function gameTime() {
+            time++;
+            var obj = document.getElementById("d1");
+            obj.innerHTML = "Time: " + time + " seconds";
+        }
+    </script>
+</head>
+<body>
+<input type="button" value="START" onclick="startGame()">
+<input type="button" value="PAUSE" onclick="pauseGame()">
+<span id="d1"> Time: 0 second</span>
+<span id="d2">
+    <span id="d3"></span>
+</span>
+</body>
+</html>

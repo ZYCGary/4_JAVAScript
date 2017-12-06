@@ -1,0 +1,26 @@
+<!--
+screen.height   分线率
+screen.width    分辨率
+availHeight     获取任务栏的高度
+availWidth      获取任务栏的宽度
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        function fn() {
+           /* var w = screen.width;
+            var h = screen.height;*/
+            var w = screen.availWidth;
+            var h = screen.availHeight;
+            alert(w + " " + h);
+        }
+    </script>
+</head>
+<body>
+<input type="button" value="CLICK" onclick="fn()">
+</body>
+</html>

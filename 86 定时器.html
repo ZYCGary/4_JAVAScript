@@ -1,0 +1,49 @@
+<!--
+创建定时器
+1. 一次性定时器：只会执行一次
+    window.setTimeout(jsCode, time(单位ms));
+
+2. 反复性定时器：执行多次
+    window.Interval();
+
+清楚定时器
+1. 一次性定时器
+    clearTimeout(name);
+2. 反复性定时器
+    clearInterval(name);
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Timeout</title>
+    <script type="text/javascript">
+        onload = init;
+        function init() {
+            fn();
+            setInterval("fn()", 1000);
+        }
+
+        function fn() {
+            var time = new Date();
+            var obj = document.getElementById("div1");
+            obj.innerHTML=time;
+        }
+    </script>
+    <style type="text/css">
+        div{
+            border: blue 4px solid;
+            background: yellow;
+            height: 100px;
+            font-size: 60px;
+            text-align: center;
+            line-height: 100px;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">
+
+</div>
+</body>
+</html>

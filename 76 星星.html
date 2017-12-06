@@ -1,0 +1,49 @@
+<!--
+1. 点击出现star:
+    document.createElement("标签名");
+    document.body.appendChild(obj);
+    * margin不会触发事件
+
+2. 让star随即大小(20-100px)
+3. 出现在鼠标点击处:
+    event
+-->
+<!DOCTYPE html>
+<html lang="en" onclick="star(event)">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        body {
+            height: 700px;
+            border: red 1px solid;
+        }
+    </style>
+    <script type="text/javascript">
+        function star(e) {
+            // 创建star标签
+            var obj = document.createElement("img");
+
+            // 添加src
+            obj.src = "images/star.png";
+
+            // 随机大小
+            var width = Math.random() * (100 - 20) + 20;
+            obj.width = width;
+
+            // 出现在鼠标点击处
+            var x = e.clientX;
+            var y = e.clientY;
+            obj.style.position = "absolute";
+            obj.style.top=y+"px";
+            obj.style.left=x+"px";
+
+            // 放入body内
+            document.body.appendChild(obj);
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

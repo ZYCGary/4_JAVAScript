@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css"></style>
+    <script type="text/javascript">
+        function fn() {
+            alert("This is onchange event");
+        }
+    </script>
+</head>
+<body>
+<textarea onchange="fn()">
+    abcd
+</textarea>
+
+<select id="slct" onchange="fn()">
+    <option>a</option>
+    <option>b</option>
+    <option>c</option>
+    <option>d</option>
+</select>
+</body>
+</html>

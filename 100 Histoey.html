@@ -1,0 +1,32 @@
+<!--
+history.length  获取浏览过的URL的数量
+history.back    返回history里的前一个页面
+history.forward 加载历史记录中的下一个页面
+history.go(n)      跳转到历史记录中指定的页面, 如果n=-1，就是history.back
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        function fn() {
+            var n = history.length;
+            alert(n);
+        }
+
+        function fn1() {
+            location.assign("http://www.google.com");
+        }
+
+        function fn2() {
+            history.forward();
+        }
+    </script>
+</head>
+<body>
+<input type="button" value="CLICK for length" onclick="fn()">
+<input type="button" value="CLICK for jumping" onclick="fn1()">
+<input type="button" value="ClICK for forward" onclick="fn2()">
+</body>
+</html>

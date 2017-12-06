@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css"></style>
+    <script type="text/javascript">
+        var n = 23;
+        document.write('<table>')
+        // 弹出一个窗口，并停止程序的进行，直至关闭这个窗口
+        alert(n);
+
+        // 检测用户上传的文件名是否符合要求（jpg,png,gif）
+        function fn() {
+            var file = document.getElementById("f1");
+            var v = file.value;
+            var p = v.lastIndexOf(".");
+            var ex = v.substr(p + 1);
+            ex = ex.toLowerCase();
+
+            if (ex == "jpg" || ex =="png" || ex == "gif") {
+                alert("Success");
+            }
+            else alert("Failed");
+
+        }
+    </script>
+</head>
+<body>
+<input type="file" id="f1">
+<input type="button" id="btn1" value="Submit" onclick="fn()">
+</body>
+</html>

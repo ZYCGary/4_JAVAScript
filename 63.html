@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        var birth = new Date(1993, 5, 3);
+        var now = new Date();
+
+        var birth_ms = birth.getTime();
+        var now_ms = now.getTime();
+        var life = now_ms - birth_ms;
+        life = life / 24 / 60 / 60 / 1000;
+        document.write("You have lived for " + life + "days");
+    </script>
+</head>
+<body>
+
+</body>
+</html>

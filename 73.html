@@ -1,0 +1,38 @@
+<!--
+鼠标event:
+onclick, onmouseover. onmouseout, ondbclick, onmousedown, onmouseup, onmousemove
+
+表单event:
+onfocus, onblur, onsubmit, onchange, onreset
+
+键盘event:
+onkeydown, onkeyup, onkeypress
+
+窗口event(Onload event): 页面加载完成后立刻执行的事件
+1. 注意：function后没有()
+    <script> window.onload=function</script>
+2. <body onload="function()"></body>
+
+Event: 保存事件发生时的相关信息
+    Event.clientX, Event.clientY
+    Event.target
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        // window.onload = init;
+
+        function init() {
+            alert("This is window event")
+        }
+    </script>
+</head>
+<body onload="init()">
+abcd
+</body>
+</html>

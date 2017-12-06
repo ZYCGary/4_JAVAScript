@@ -1,0 +1,33 @@
+<!--
+window的方法：
+1. alert();
+2. prompt();    弹出一个可以让用户输入的窗口 return类型：string/null
+3. confirm();   return类型:boolean
+4. open();      打开一个新的窗口或屏幕弹窗 (url, name, width/height/top/left/scrollbars/toolbars/location)
+5. close();     只能关闭通过javascript代码打开的窗口
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        /*
+        alert("123");
+        */
+        /*
+        var name = prompt("Please input your name","ABCD");
+        alert(name);
+        */
+        /*
+        var m = confirm("Are you male?");
+        */
+        function fn() {
+            open("http://www.google.com", "width=300px,height=200px,left=200px,top=100px,scrollbars=1,toolbar=0,location=0");
+        }
+    </script>
+</head>
+<body>
+<input type="button" value="Click to open a Google window" id="btn1" onclick="fn()">
+</body>
+</html>

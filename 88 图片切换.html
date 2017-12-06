@@ -1,0 +1,113 @@
+<!--
+1. 自动切换图片: setInternal()
+2. 页面加载完成后才会切换: onload
+3. 鼠标放到图片上，停止切换，鼠标离开，继续切换
+4. 鼠标放到按钮上，背景颜色变换，停止切换
+5. 鼠标离开按钮，背景颜色变化，继续切换
+6. 图片和按钮同步
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        // 1
+        onload = init();
+
+        var to;
+
+        function init() {
+            to = setInterval("switchImg()", 1000);
+        }
+
+        var i = 1;
+
+        // 1
+        function switchImg() {
+            var obj = document.getElementById("car");
+            obj.src = "images/car" + i + ".jpg";
+
+            // 6
+            var btn = document.getElementById("li" + i);
+            clearBgCol();
+            btn.style.background = "orange";
+            // 1
+            i++;
+            if (i > 3) {
+                i = 1;
+            }
+        }
+
+        // 3
+        function stop() {
+            clearInterval(to);
+        }
+
+        function resume() {
+            to = setInterval("switchImg()", 1000);
+        }
+
+        // 4
+        function navigate(n, btn) {
+            // 5
+            i = n;
+
+            var obj = document.getElementById("car");
+            obj.src = "images/car" + n + ".jpg";
+            stop();
+
+            // 4
+            clearBgCol();
+            btn.style.background = "orange";
+        }
+
+        function clearBgCol() {
+            for (var j = 1; j <= 3; j++) {
+                var obj = document.getElementById("li" + j);
+                obj.style.background = "white";
+            }
+        }
+
+        // 5
+        function begin() {
+            resume();
+        }
+
+    </script>
+
+    <style type="text/css">
+        div {
+            border: red solid 1px;
+            width: 370px;
+            padding-top: 4px;
+            padding-left: 4px;
+            padding-right: 4px;
+        }
+
+        div ul {
+            float: right;
+        }
+
+        ul li {
+            list-style: none;
+            border: 1px solid red;
+            width: 20px;
+            height: 20px;
+            margin-top: 6px;
+            text-align: center;
+            line-height: 20px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <img id="car" src="images/car1.jpg" onmouseover="stop()" onmouseout="resume()">
+    <ul>
+        <li id="li1" onmouseover="navigate(1,this)" onmouseout="begin()">1</li>
+        <li id="li2" onmouseover="navigate(2,this)" onmouseout="begin()">2</li>
+        <li id="li3" onmouseover="navigate(3,this)" onmouseout="begin()">3</li>
+    </ul>
+</div>
+</body>
+</html>

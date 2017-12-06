@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+
+        // event好处：不需要访问id，复用性强
+        function fn(e) {
+            // var obj=document.getElementById(d1);
+            // alert(obj.value);
+            alert(e.target);
+        }
+    </script>
+</head>
+<body>
+<input type="button" value="Click" onclick="fn(event)" id="d1">
+</body>
+</html>
