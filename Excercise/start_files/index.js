@@ -7,6 +7,7 @@ function createBookTable(book) {
     return tr;
 }
 
+
 function loadBooks(list) {
     var bookList = document.getElementById('bookList');
     for (var i = 0; i < list.length; i++) {
@@ -92,14 +93,37 @@ function search(filterResult) {
     return count;
 }
 
-// Combine search and filter
+
+// Combine search and filter functions
 function combineResult(bookList) {
     var filterResult = filter(bookList);
     search(filterResult);
 }
 
-function addToCart() {
 
+function addToCart() {
+    var checkBoxes = document.getElementById('bookList').getElementsByTagName('input');
+    var count = 0;
+    //    console.log(checkBoxes);
+
+    // Count checked books
+    for (var i = 0; i < checkBoxes.length; i++) {
+        if (checkBoxes[i].checked) {
+            count++;
+        }
+    }
+
+    // Change the number of added books
+    var incart = document.getElementById('incart');
+    incart.innerHTML = Number(incart.innerHTML) + count;
+
+    // Clear check marks
+    for (i = 0; i < checkBoxes.length; i++) {
+        checkBoxes[i].checked = false;
+    }
+
+    // Show notification
+    // TO DO
 }
 
 function resetCart() {
@@ -115,14 +139,12 @@ window.onload = function () {
 
     // Search books
     var searchBtn = document.getElementById('search');
-    //    var filterResult = filter(bookList);
     searchBtn.addEventListener("click", function () {
         combineResult(bookList);
     });
 
     // Filter books
     var filterBtn = document.getElementById('filter');
-    //    filterBtn.onsubmit = filter();
     filterBtn.addEventListener("click", function () {
         combineResult(bookList);
     });

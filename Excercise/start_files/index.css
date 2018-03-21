@@ -14,21 +14,46 @@ body {
 }
 
 div#searchBox,
-div#listBox {
+div#listBox,
+div.successMsg,
+div.errorMsg {
     margin: 0.25em auto;
     background-color: #EBF4FB;
     padding: 1em;
     border: 1pt solid #95BEF0;
     width: 80%;
-}
-
-div#searchBox {
     margin-top: 1em;
     overflow: hidden;
 }
 
+div#searchBox {
+    /*    margin-top: 1em;*/
+    /*    overflow: hidden;*/
+}
+
+div.successMsg {
+    display: none;
+    background-color: #e3ffb9;
+    border: #e3ffb9 1pt solid;
+}
+
+div.errorMsg {
+    display: none;
+    background-color: #ffd1d1;
+    border: 1pt solid #ffd1d1;
+}
+
+.fa-times {
+    float: right;
+    line-height: 100%;
+}
+
+.fa-times:hover {
+    cursor: pointer;
+}
+
 div#listBox {
-    margin-top: 1em;
+    /*    margin-top: 1em;*/
     background-color: #FAFCFF;
 }
 
