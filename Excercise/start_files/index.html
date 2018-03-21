@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="utf-8">
+    <title>COMP5347 Assignment One</title>
+    <link rel="stylesheet" href="index.css" />
+    <script type="text/javascript" src="data.json"></script>
+    <script type="text/javascript" src="index.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js" integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <form method="get" action="">
+        <div id="searchBox">
+            <input type="text" id="searchText">
+            <input type="button" id="search" value="search">
+            <select name="category" id="category">
+                <option value="All">Category</option>
+                <option value="Art">Art</option>
+                <option value="Science History">Science History</option>
+                <option value="Health">Health</option>
+                <option value="Action and Adventure">Action and Adventure</option>
+                <option value="Science Fiction">Science Fiction</option>
+                <option value="Food">Food(For test)</option>
+            </select>
+            <input type="button" id="filter" value="filter">
+            <div style="float: right">
+                <input type="button" id="add" value="Add to cart">
+                <input type="button" id="reset" value="Reset the cart">
+                <i class="fas fa-shopping-cart"></i>
+                <span>(0)</span>
+            </div>
+        </div>
+
+        <div id="listBox">
+            <table width="100%">
+                <caption>Online Book Store</caption>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th>Title</th>
+                        <th>Authors</th>
+                        <th>Year</th>
+                        <th>Price</th>
+                        <th>Publisher</th>
+                        <th>Category</th>
+                    </tr>
+                </thead>
+                <tbody id="bookList">
+
+                </tbody>
+            </table>
+
+        </div>
+    </form>
+</body>
+
+</html>
