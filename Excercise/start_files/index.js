@@ -25,8 +25,31 @@ function clearBooks() {
 }
 
 
-function errorMessage(msg) {
-    alert(msg);
+function notification(msg, indicator) {
+    if (indicator === "err") {
+        var errorMsg = document.getElementsByClassName('errorMsg')[0];
+        var errText = document.getElementById('errorText');
+        errText.innerHTML = msg;
+        errorMsg.style.display = "block";
+    } else if (indicator === "succ") {
+        var successMsg = document.getElementsByClassName('successMsg')[0];
+        var succText = document.getElementById('successText');
+        succText.innerHTML = msg;
+        successMsg.style.display = "block";
+    }
+}
+
+
+function clearNotifications() {
+    var errorMsg = document.getElementsByClassName('errorMsg')[0];
+    var errText = document.getElementById('errorText');
+    errText.innerHTML = '';
+    errorMsg.style.display = "none";
+
+    var successMsg = document.getElementsByClassName('successMsg')[0];
+    var succText = document.getElementById('successText');
+    succText.innerHTML = '';
+    successMsg.style.display = "none";
 }
 
 
@@ -34,6 +57,7 @@ function highlightBox(index) {
     var target = document.getElementById('bookList').children[index];
     target.style.backgroundColor = "yellow";
 }
+
 
 function filter(bookList) {
     var select = document.getElementById('category');
@@ -58,7 +82,6 @@ function filter(bookList) {
 
     // Show match result
     loadBooks(result);
-    console.log(result);
 
     return (result);
 }
@@ -74,8 +97,8 @@ function search(filterResult) {
     if (filterResult.length === 0) {
         // No books in category
         clearBooks();
-        var categoryErr = "Oops! Category " + category + " does not contain any books ~_~";
-        errorMessage(categoryErr);
+        var categoryErr = "Oops! Category <strong><em>" + category + "</em></strong> does not contain any books ~_~";
+        notification(categoryErr, "err");
     } else if (input) {
         for (var i = 0; i < filterResult.length; i++) {
             if (filterResult[i].title.indexOf(input) !== -1) {
@@ -86,8 +109,8 @@ function search(filterResult) {
         if (count === 0) {
             // No book title contains search term
             clearBooks();
-            var searchErr = "Oops! Search term \"" + input + "\" does not appear in any title of book in category of " + category + " ~_~"
-            errorMessage(searchErr);
+            var searchErr = "Oops! Search term <strong><em>\"" + input + "\"</em></strong> does not appear in any title of book in category of <strong><em>" + category + "</em></strong> ~_~"
+            notification(searchErr, "err");
         }
     }
     return count;
@@ -96,15 +119,18 @@ function search(filterResult) {
 
 // Combine search and filter functions
 function combineResult(bookList) {
+    clearNotifications();
+
     var filterResult = filter(bookList);
     search(filterResult);
 }
 
 
 function addToCart() {
+    clearNotifications();
+
     var checkBoxes = document.getElementById('bookList').getElementsByTagName('input');
     var count = 0;
-    //    console.log(checkBoxes);
 
     // Count checked books
     for (var i = 0; i < checkBoxes.length; i++) {
@@ -122,12 +148,23 @@ function addToCart() {
         checkBoxes[i].checked = false;
     }
 
-    // Show notification
-    // TO DO
+    // Show notifications
+    if (count > 0) {
+        var succMsg = "Yeah! Seleted books are added to cart!";
+        notification(succMsg, "succ");
+    } else {
+        var errMsg = "Oops! You have not selected any books ~_~";
+        notification(errMsg, "err");
+    }
 }
 
 function resetCart() {
-    alert("reset")
+    clearNotifications();
+
+    var incart = document.getElementById('incart');
+    incart.innerHTML = "0";
+    var msg = "Awesome! You cart is empty now!";
+    notification(msg, "succ");
 }
 
 window.onload = function () {
@@ -156,4 +193,11 @@ window.onload = function () {
     // Reset cart
     var resetBtn = document.getElementById('reset');
     resetBtn.addEventListener("click", resetCart);
+
+    // Close notification
+    var close = document.getElementsByClassName('close');
+    //    console.log(close);
+    for (var i = 0; i < close.length; i++) {
+        close[i].addEventListener("click", clearNotifications);
+    }
 }

@@ -43,7 +43,7 @@ div.errorMsg {
     border: 1pt solid #ffd1d1;
 }
 
-.fa-times {
+.close {
     float: right;
     line-height: 100%;
 }
