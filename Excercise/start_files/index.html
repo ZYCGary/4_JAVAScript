@@ -11,10 +11,18 @@
 </head>
 
 <body>
+    <div id="overlay"></div>
+    <div id="confirm">
+        <h3>Are you sure you want to empty your cart?</h3>
+        <div class="buttons">
+            <button id="yes">Confirm</button>
+            <button id="no">Cancel</button>
+        </div>
+    </div>
     <form method="get">
         <div id="searchBox">
             <input type="text" id="searchText">
-            <input type="button" id="search" value="search">
+            <input type="button" id="search" value="Search">
             <select name="category" id="category">
                 <option value="All">Category</option>
                 <option value="Art">Art</option>
@@ -24,7 +32,7 @@
                 <option value="Science Fiction">Science Fiction</option>
                 <option value="Food">Food(For test)</option>
             </select>
-            <input type="button" id="filter" value="filter">
+            <input type="button" id="filter" value="Filter">
             <div style="float: right">
                 <input type="button" id="add" value="Add to cart">
                 <input type="button" id="reset" value="Reset the cart">
@@ -36,13 +44,13 @@
         <div id="msgBox">
             <div class="successMsg">
                 <span id="successText"></span>
-                <div name="close">
+                <div class="close">
                     <i class="fas fa-times"></i>
                 </div>
             </div>
             <div class="errorMsg">
                 <span id="errorText"></span>
-                <div name="close">
+                <div class="close">
                     <i class="fas fa-times"></i>
                 </div>
             </div>
