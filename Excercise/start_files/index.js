@@ -1,7 +1,7 @@
 'use strict';
 
 function createBookTable(book) {
-    var tr = document.createElement('tr');
+    let tr = document.createElement('tr');
     tr.innerHTML = '<td><input type="checkbox"></td><td><img src="' + book.img + '" width="60px"></td><td><em>' + book.title + '</em></td><td>' + book.authors + '</td><td>' + book.year + '</td><td>' + book.price + '</td><td>' + book.publisher + '</td><td>' + book.category + '</td>';
 
     return tr;
@@ -9,16 +9,16 @@ function createBookTable(book) {
 
 
 function loadBooks(list) {
-    var bookList = document.getElementById('bookList');
-    for (var i = 0; i < list.length; i++) {
-        var book = createBookTable(list[i]);
+    let bookList = document.getElementById('bookList');
+    for (let i = 0; i < list.length; i++) {
+        let book = createBookTable(list[i]);
         bookList.appendChild(book);
     }
 }
 
 
 function clearBooks() {
-    var bookList = document.getElementById('bookList');
+    let bookList = document.getElementById('bookList');
     while (bookList.firstChild) {
         bookList.removeChild(bookList.firstChild);
     }
@@ -27,13 +27,13 @@ function clearBooks() {
 
 function notification(msg, indicator) {
     if (indicator === "err") {
-        var errorMsg = document.getElementsByClassName('errorMsg')[0];
-        var errText = document.getElementById('errorText');
+        let errorMsg = document.getElementsByClassName('errorMsg')[0];
+        let errText = document.getElementById('errorText');
         errText.innerHTML = msg;
         errorMsg.style.display = "block";
     } else if (indicator === "succ") {
-        var successMsg = document.getElementsByClassName('successMsg')[0];
-        var succText = document.getElementById('successText');
+        let successMsg = document.getElementsByClassName('successMsg')[0];
+        let succText = document.getElementById('successText');
         succText.innerHTML = msg;
         successMsg.style.display = "block";
     }
@@ -41,36 +41,36 @@ function notification(msg, indicator) {
 
 
 function clearNotifications() {
-    var errorMsg = document.getElementsByClassName('errorMsg')[0];
-    var errText = document.getElementById('errorText');
+    let errorMsg = document.getElementsByClassName('errorMsg')[0];
+    let errText = document.getElementById('errorText');
     errText.innerHTML = '';
     errorMsg.style.display = "none";
 
-    var successMsg = document.getElementsByClassName('successMsg')[0];
-    var succText = document.getElementById('successText');
+    let successMsg = document.getElementsByClassName('successMsg')[0];
+    let succText = document.getElementById('successText');
     succText.innerHTML = '';
     successMsg.style.display = "none";
 }
 
 
 function highlightBox(index) {
-    var target = document.getElementById('bookList').children[index];
+    let target = document.getElementById('bookList').children[index];
     target.style.backgroundColor = "yellow";
 }
 
 
 function filter(bookList) {
-    var select = document.getElementById('category');
-    var category = select.options[select.selectedIndex].value;
+    let select = document.getElementById('category');
+    let category = select.options[select.selectedIndex].value;
     //    console.log(category);
-    var result = [];
+    let result = [];
 
     // Clear all books, ready for showing match result
     clearBooks();
 
     // Retreval bookList and match
     if (category && category !== "All") {
-        for (var i = 0; i < bookList.length; i++) {
+        for (let i = 0; i < bookList.length; i++) {
             //            console.log(bookList[i].category);
             if (bookList[i].category === category) {
                 result.push(bookList[i]);
@@ -88,19 +88,19 @@ function filter(bookList) {
 
 
 function search(filterResult) {
-    var input = document.getElementById('searchText').value;
+    let input = document.getElementById('searchText').value;
     //    console.log(input);
-    var count = 0;
-    var select = document.getElementById('category');
-    var category = select.options[select.selectedIndex].value;
+    let count = 0;
+    let select = document.getElementById('category');
+    let category = select.options[select.selectedIndex].value;
 
     if (filterResult.length === 0) {
         // No books in category
         clearBooks();
-        var categoryErr = "Oops! Category <strong><em>" + category + "</em></strong> does not contain any books ~_~";
+        let categoryErr = "Oops! Category <strong><em>" + category + "</em></strong> does not contain any books ~_~";
         notification(categoryErr, "err");
     } else if (input) {
-        for (var i = 0; i < filterResult.length; i++) {
+        for (let i = 0; i < filterResult.length; i++) {
             if (filterResult[i].title.indexOf(input) !== -1) {
                 highlightBox(i);
                 count++;
@@ -109,7 +109,7 @@ function search(filterResult) {
         if (count === 0) {
             // No book title contains search term
             clearBooks();
-            var searchErr = "Oops! Search term <strong><em>\"" + input + "\"</em></strong> does not appear in any title of book in category of <strong><em>" + category + "</em></strong> ~_~"
+            let searchErr = "Oops! Search term <strong><em>\"" + input + "\"</em></strong> does not appear in any title of book in category of <strong><em>" + category + "</em></strong> ~_~"
             notification(searchErr, "err");
         }
     }
@@ -121,7 +121,7 @@ function search(filterResult) {
 function combineResult(bookList) {
     clearNotifications();
 
-    var filterResult = filter(bookList);
+    let filterResult = filter(bookList);
     search(filterResult);
 }
 
@@ -129,18 +129,18 @@ function combineResult(bookList) {
 function addToCart() {
     clearNotifications();
 
-    var checkBoxes = document.getElementById('bookList').getElementsByTagName('input');
-    var count = 0;
+    let checkBoxes = document.getElementById('bookList').getElementsByTagName('input');
+    let count = 0;
 
     // Count checked books
-    for (var i = 0; i < checkBoxes.length; i++) {
+    for (let i = 0; i < checkBoxes.length; i++) {
         if (checkBoxes[i].checked) {
             count++;
         }
     }
 
     // Change the number of added books
-    var incart = document.getElementById('incart');
+    let incart = document.getElementById('incart');
     incart.innerHTML = Number(incart.innerHTML) + count;
 
     // Clear check marks
@@ -150,10 +150,10 @@ function addToCart() {
 
     // Show notifications
     if (count > 0) {
-        var succMsg = "Yeah! Seleted books are added to cart!";
+        let succMsg = "Yeah! Seleted books are added to cart!";
         notification(succMsg, "succ");
     } else {
-        var errMsg = "Oops! You have not selected any books ~_~";
+        let errMsg = "Oops! You have not selected any books ~_~";
         notification(errMsg, "err");
     }
 }
@@ -161,16 +161,16 @@ function addToCart() {
 function resetCart() {
     clearNotifications();
 
-    var incart = document.getElementById('incart');
+    let incart = document.getElementById('incart');
     incart.innerHTML = "0";
-    var msg = "Awesome! You cart is empty now!";
+    let msg = "Awesome! You cart is empty now!";
     notification(msg, "succ");
 }
 
 
 function confirmBoxDiplay(display) {
-    var overlay = document.getElementById('overlay');
-    var confirmBox = document.getElementById('confirm');
+    let overlay = document.getElementById('overlay');
+    let confirmBox = document.getElementById('confirm');
     overlay.style.display = display;
     confirmBox.style.display = display;
 }
@@ -178,47 +178,47 @@ function confirmBoxDiplay(display) {
 
 window.onload = function () {
     // Load all books
-    var data = '[ {"img": "images/01.jpg","title": "The Arts: A Visual Encyclopedia","authors": "DK","year": "2017","price": "13.99","publisher": "DK Children","category": "Art"},{"img": "images/11.jpg","title": "The Lost Art of Reading Nature\'s Signs: Use Outdoor Clues to Find Your Way, Predict the Weather, Locate Water, Track Animals―and Other Forgotten Skills (Natural Navigation)","authors": "Tristan Gooley","year": "2015","price": "11.52","publisher": "The Experiment","category": "Art"}, {"img": "images/02.jpg","title": "The Scientists: A History of Science Told Through the Lives of Its Greatest Inventors","authors": "John Gribbin","year": "2004","price": "16.00","publisher": "Random House Trade Paperbacks","category": "Science History"}, {"img": "images/22.jpg","title": "The Invention of Science: A New History of the Scientific Revolution","authors": "David Wootton","year": "2016","price": "7.75","publisher": "Harper Perennial","category": "Science History"}, {"img": "images/03.jpg","title": "The Hunger Games","authors": "Suzanne Collins","year": "2010","price": "7.55","publisher": "Scholastic Press","category": "Action and Adventure"}, {"img": "images/33.jpg","title": "Coyote Peterson’s Brave Adventures: Wild Animals in a Wild World","authors": "Coyote Peterson","year": "2017","price": "13.44","publisher": "Mango","category": "Action and Adventure"},{"img": "images/04.jpg","title": "Dr. A\'s Habits of Health: The Path to Permanent Weight Control & Optimal Health","authors": "Wayne Scott Anderse","year": "2010","price": "24.43","publisher": "Habits of Health Press","category": "Health"},{"img": "images/44.jpg","title": "The New Health Rules: Simple Changes to Achieve Whole-Body Wellness","authors": "Frank Lipman M.D.","year": "2016","price": "8.98","publisher": "Artisan","category": "Health"},{"img": "images/05.jpg","title": "2084","authors": "Mason Engel","year": "2017","price": "12.50","publisher": "CreateSpace Independent Publishing Platform","category": "Science Fiction"},{"img": "images/55.jpg","title": "God\'s Ground: Compared to the settlement of space, all other forms of human endeavor shrink to insignificance","authors": "John Brophy","year": "2017","price": "6.99","publisher": "John R Brophy","category": "Science Fiction"}]';
+    let data = '[ {"img": "images/01.jpg","title": "The Arts: A Visual Encyclopedia","authors": "DK","year": "2017","price": "13.99","publisher": "DK Children","category": "Art"},{"img": "images/11.jpg","title": "The Lost Art of Reading Nature\'s Signs: Use Outdoor Clues to Find Your Way, Predict the Weather, Locate Water, Track Animals―and Other Forgotten Skills (Natural Navigation)","authors": "Tristan Gooley","year": "2015","price": "11.52","publisher": "The Experiment","category": "Art"}, {"img": "images/02.jpg","title": "The Scientists: A History of Science Told Through the Lives of Its Greatest Inventors","authors": "John Gribbin","year": "2004","price": "16.00","publisher": "Random House Trade Paperbacks","category": "Science History"}, {"img": "images/22.jpg","title": "The Invention of Science: A New History of the Scientific Revolution","authors": "David Wootton","year": "2016","price": "7.75","publisher": "Harper Perennial","category": "Science History"}, {"img": "images/03.jpg","title": "The Hunger Games","authors": "Suzanne Collins","year": "2010","price": "7.55","publisher": "Scholastic Press","category": "Action and Adventure"}, {"img": "images/33.jpg","title": "Coyote Peterson’s Brave Adventures: Wild Animals in a Wild World","authors": "Coyote Peterson","year": "2017","price": "13.44","publisher": "Mango","category": "Action and Adventure"},{"img": "images/04.jpg","title": "Dr. A\'s Habits of Health: The Path to Permanent Weight Control & Optimal Health","authors": "Wayne Scott Anderse","year": "2010","price": "24.43","publisher": "Habits of Health Press","category": "Health"},{"img": "images/44.jpg","title": "The New Health Rules: Simple Changes to Achieve Whole-Body Wellness","authors": "Frank Lipman M.D.","year": "2016","price": "8.98","publisher": "Artisan","category": "Health"},{"img": "images/05.jpg","title": "2084","authors": "Mason Engel","year": "2017","price": "12.50","publisher": "CreateSpace Independent Publishing Platform","category": "Science Fiction"},{"img": "images/55.jpg","title": "God\'s Ground: Compared to the settlement of space, all other forms of human endeavor shrink to insignificance","authors": "John Brophy","year": "2017","price": "6.99","publisher": "John R Brophy","category": "Science Fiction"}]';
 
-    var bookList = JSON.parse(data);
+    let bookList = JSON.parse(data);
     loadBooks(bookList);
 
     // Search books
-    var searchBtn = document.getElementById('search');
+    let searchBtn = document.getElementById('search');
     searchBtn.addEventListener("click", function () {
         combineResult(bookList);
     });
 
     // Filter books
-    var filterBtn = document.getElementById('filter');
+    let filterBtn = document.getElementById('filter');
     filterBtn.addEventListener("click", function () {
         combineResult(bookList);
     });
 
     // Add selected books to cart
-    var addBtn = document.getElementById('add');
+    let addBtn = document.getElementById('add');
     addBtn.addEventListener("click", addToCart);
 
     // Reset cart
-    var resetBtn = document.getElementById('reset');
+    let resetBtn = document.getElementById('reset');
     resetBtn.addEventListener("click", function () {
         confirmBoxDiplay("block");
     });
 
     // Close notification
-    var close = document.getElementsByClassName('close');
+    let close = document.getElementsByClassName('close');
     //    console.log(close);
-    for (var i = 0; i < close.length; i++) {
+    for (let i = 0; i < close.length; i++) {
         close[i].addEventListener("click", clearNotifications);
     }
 
-    var cancelBtn = document.getElementById('no');
+    let cancelBtn = document.getElementById('no');
     //    cancelBtn.onclick = confirmBoxDiplay("none");
     cancelBtn.addEventListener("click", function () {
         confirmBoxDiplay("none");
     })
 
-    var confirmBtn = document.getElementById('yes');
+    let confirmBtn = document.getElementById('yes');
     confirmBtn.addEventListener("click", function () {
         confirmBoxDiplay("none");
         resetCart();
